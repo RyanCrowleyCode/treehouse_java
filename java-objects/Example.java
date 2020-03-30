@@ -4,10 +4,42 @@ public class Example {
       // Your amazing code goes here...
       
       System.out.println("We are making a new PEZ Dispenser");
-      PezDispenser dispenser = new PezDispenser();
-      dispenser.characterName = "Darth Vader";
+      System.out.printf("FUN FACT: There are %d PEZ allowed in every dispenser %n",
+                        PezDispenser.MAX_PEZ);
+      PezDispenser dispenser = new PezDispenser("Yoda");
       System.out.printf("The dispenser is %s %n",
-                        dispenser.characterName);
+                        dispenser.getCharacterName());
+      
+      if (dispenser.isEmpty()) {
+        System.out.println("Dispenser is empty");
+      }
+      System.out.println("Filling the dispenser with delicious PEZ...");
+      dispenser.fill();
+      if(!dispenser.isEmpty()) {
+        System.out.println("Dispenser is NOT empty!");
+      }
+      
+      while (dispenser.dispense()) {
+        System.out.println("Comp!"); 
+      }
+      if (dispenser.isEmpty()) {
+        System.out.println("Ate all the PEZ");
+      }
+      
+      dispenser.fill(4);
+      dispenser.fill(2);
+      while (dispenser.dispense()) {
+        System.out.println("Chomp!!");
+      }
+      
+      try {
+        dispenser.fill(400);
+        System.out.println("This will never happen");
+      } catch (IllegalArgumentException iae) {
+        System.out.println("Whoa there!");
+        System.out.printf("The error was %s %n", iae);
+      }
+      
     }
   
   }
