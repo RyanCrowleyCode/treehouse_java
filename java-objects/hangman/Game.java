@@ -8,7 +8,7 @@ class Game {
     hits = "";
     misses = "";
   }
-  
+
   public boolean applyGuess(char letter) {
     boolean isHit = answer.indexOf(letter) != -1;
     if (isHit) {

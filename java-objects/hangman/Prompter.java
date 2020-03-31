@@ -1,8 +1,24 @@
-class Prompter {
-}public class Hangman {
+import java.util.Scanner;
 
-    public static void main(String[] args) {
-      // Your incredible code goes here...
-      
-    }
+class Prompter {
+  private Game game;
+
+  public Prompter(Game game) {
+    this.game = game;
   }
+
+  public boolean promptForGuess() {
+    // creating a scanner object
+    Scanner scanner = new Scanner(System.in);
+    // printing a line to get input
+    System.out.print("Enter a letter:  ");
+    // using scanner object to read line for input and saving to variable
+    String guessInput = scanner.nextLine();
+    // saving the letter 'char' to a variable called guess
+    char guess = guessInput.charAt(0);
+    // we need to see if the guess matches or not. This is the game's job.
+    // return the boolean from game.applyGuess
+    return game.applyGuess(guess);
+  }
+
+}
