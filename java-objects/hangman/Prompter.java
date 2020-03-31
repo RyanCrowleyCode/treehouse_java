@@ -2,11 +2,11 @@ import java.util.Scanner;
 
 class Prompter {
   private Game game;
-
+  
   public Prompter(Game game) {
     this.game = game;
   }
-
+  
   public boolean promptForGuess() {
     // creating a scanner object
     Scanner scanner = new Scanner(System.in);
@@ -20,5 +20,11 @@ class Prompter {
     // return the boolean from game.applyGuess
     return game.applyGuess(guess);
   }
-
+  
+  public void displayProgress() {
+    System.out.printf("You have %d tries left to solve: %s%n",
+                      game.getRemainingTries(),
+                      game.getCurrentProgress());
+  }
+  
 }
