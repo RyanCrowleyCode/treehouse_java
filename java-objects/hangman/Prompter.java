@@ -18,7 +18,14 @@ class Prompter {
     char guess = guessInput.charAt(0);
     // we need to see if the guess matches or not. This is the game's job.
     // return the boolean from game.applyGuess
-    return game.applyGuess(guess);
+    boolean isHit = false;
+    try {
+      isHit =  game.applyGuess(guess);
+    } catch(IllegalArgumentException iae) {
+      System.out.println(iae.getMessage());
+    }
+    
+    return isHit;
   }
   
   public void displayProgress() {

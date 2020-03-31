@@ -11,13 +11,16 @@ class Game {
   }
   
   public boolean applyGuess(char letter) {
+    if (hits.indexOf(letter) != -1 || misses.indexOf(letter) != -1) {
+        throw new IllegalArgumentException(letter + " has already been guessed.");
+    }   
     boolean isHit = answer.indexOf(letter) != -1;
     if (isHit) {
       hits += letter;
     } else {
       misses += letter;
     }
-    return isHit;
+    return isHit;    
   }
   
   public int getRemainingTries() {
