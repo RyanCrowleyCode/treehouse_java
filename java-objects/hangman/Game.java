@@ -10,6 +10,10 @@ class Game {
     misses = "";
   }
   
+  public String getAnswer() {
+    return answer;  
+  }
+  
   private char normalizedGuess(char letter) {
     if (! Character.isLetter(letter)) {
       throw new IllegalArgumentException("A letter is required"); 
@@ -30,6 +34,13 @@ class Game {
       misses += letter;
     }
     return isHit;    
+  }
+  
+  public boolean applyGuess(String letters) {
+    if (letters.length() == 0) {
+      throw new IllegalArgumentException("No letter found");
+    }
+    return applyGuess(letters.charAt(0));
   }
   
   public int getRemainingTries() {
@@ -56,6 +67,10 @@ class Game {
     }
     
     return progress;
+  }
+  
+  public boolean isWon() {
+    return getCurrentProgress().indexOf('-') == -1;
   }
 
 }

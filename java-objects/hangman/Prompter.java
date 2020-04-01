@@ -14,17 +14,14 @@ class Prompter {
     
     
     do {
-      // printing a line to get input
       System.out.print("Enter a letter:  ");
-      // using scanner object to read line for input and saving to variable
       String guessInput = scanner.nextLine();
-      // saving the letter 'char' to a variable called guess
-      char guess = guessInput.charAt(0);
+
       // we need to see if the guess matches or not. This is the game's job.
       // return the boolean from game.applyGuess
       
       try {
-        isHit =  game.applyGuess(guess);
+        isHit =  game.applyGuess(guessInput);
         isAcceptable = true;
       } catch(IllegalArgumentException iae) {
         System.out.printf("%s. Please try again. %n",
@@ -39,6 +36,14 @@ class Prompter {
     System.out.printf("You have %d tries left to solve: %s%n",
                       game.getRemainingTries(),
                       game.getCurrentProgress());
+  }
+  
+  public void displayOutcome(){
+    String message = "You have lost. The word was " + game.getAnswer() + ".";
+    if (game.isWon()) {
+      message = "Congratulations! You won with " + game.getRemainingTries() + " tries remaining!";
+    }
+    System.out.println(message);
   }
   
 }
