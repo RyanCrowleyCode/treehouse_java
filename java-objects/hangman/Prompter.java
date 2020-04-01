@@ -1,14 +1,29 @@
 import java.util.Scanner;
 
 public class Prompter {
+  Scanner scanner = new Scanner(System.in);
   private Game game;
+  private final String name;
   
   public Prompter(Game game) {
     this.game = game;
+    this.name = askName(); 
+  }
+  
+  private String askName() {
+    System.out.printf("%nWelcome to Hangman! What is your name?  ");
+    return scanner.nextLine();
+  }
+  
+  public String getName() {
+    return name;
+  }
+  
+  public void welcomePlayer() {
+    System.out.printf("%nLet's start the game, %s!%n%n", getName());  
   }
   
   public boolean promptForGuess() {
-    Scanner scanner = new Scanner(System.in);
     boolean isHit = false;
     boolean isAcceptable = false;
     
@@ -39,9 +54,9 @@ public class Prompter {
   }
   
   public void displayOutcome(){
-    String message = "You have lost. The word was " + game.getAnswer() + ".";
+    String message = "You have lost. The word was " + game.getAnswer() + ". Better luck next time, " + getName() +"!";
     if (game.isWon()) {
-      message = "Congratulations! You won with " + game.getRemainingTries() + " tries remaining!";
+      message = "Congratulations, " + getName() + "! You won with " + game.getRemainingTries() + " tries remaining!";
     }
     System.out.println(message);
   }

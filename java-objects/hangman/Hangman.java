@@ -10,6 +10,7 @@ public class Hangman {
     
     Game game = new Game(args[0]);
     Prompter prompter = new Prompter(game);
+    prompter.welcomePlayer();
     
     while (game.getRemainingTries() > 0 && !game.isWon()) {
       prompter.displayProgress();
