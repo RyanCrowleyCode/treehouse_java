@@ -1,4 +1,4 @@
-class Game {
+public class Game {
   public static final int MAX_MISSES = 7;
   private String answer;
   private String hits;
@@ -8,6 +8,10 @@ class Game {
     this.answer = answer.toLowerCase();
     hits = "";
     misses = "";
+  }
+  
+  public String getAnswer() {
+    return answer;  
   }
   
   private char normalizedGuess(char letter) {
@@ -30,6 +34,13 @@ class Game {
       misses += letter;
     }
     return isHit;    
+  }
+  
+  public boolean applyGuess(String letters) {
+    if (letters.length() == 0) {
+      throw new IllegalArgumentException("No letter found");
+    }
+    return applyGuess(letters.charAt(0));
   }
   
   public int getRemainingTries() {
@@ -56,6 +67,10 @@ class Game {
     }
     
     return progress;
+  }
+  
+  public boolean isWon() {
+    return getCurrentProgress().indexOf('-') == -1;
   }
 
 }
